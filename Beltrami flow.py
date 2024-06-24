@@ -26,18 +26,18 @@ class PhysicsInformedNN:
         self.lossin = []
         self.it = 0
 
-        self.x_u = X_u[:, 0:1]  # x点的坐标
-        self.y_u = X_u[:, 1:2]  # y点的坐标
+        self.x_u = X_u[:, 0:1]  
+        self.y_u = X_u[:, 1:2]  
         self.z_u = X_u[:, 2:3]
-        self.t_u = X_u[:, 3:4]  # t点坐标
+        self.t_u = X_u[:, 3:4]  
 
-        self.x_ub = X_ub[:, 0:1]  # x点的坐标
-        self.y_ub = X_ub[:, 1:2]  # y点的坐标
+        self.x_ub = X_ub[:, 0:1]  
+        self.y_ub = X_ub[:, 1:2]  
         self.z_ub = X_ub[:, 2:3]
-        self.t_ub = X_ub[:, 3:4]  # t 点的坐标
+        self.t_ub = X_ub[:, 3:4]  
 
-        self.x_f = X_f[:, 0:1]  # x点的坐标
-        self.y_f = X_f[:, 1:2]  # y点的坐标
+        self.x_f = X_f[:, 0:1] 
+        self.y_f = X_f[:, 1:2]  
         self.z_f = X_f[:, 2:3]
         self.t_f = X_f[:, 3:4]
 
@@ -221,7 +221,7 @@ class PhysicsInformedNN:
         return u, v, w, p
 
     def you(self, x, y, z, t):
-        RE=200
+        RE=1
         u,v,w,p = self.bound(x, y, z, t)
         u_t = tf.gradients(u, t)[0]
         v_t = tf.gradients(v, t)[0]
@@ -255,7 +255,7 @@ class PhysicsInformedNN:
 
     def net_f(self, x, y, z,t):
         n = 200
-        Re = 10
+        Re = 1
         u, v, w, p = self.net_u(x, y, z,t)
         dx = (1 - 0) / (n - 1)  # / 2
         dy = (1 - 0) / (n - 1)  # / 2
@@ -426,7 +426,7 @@ class PhysicsInformedNN:
         return f1, f2, f3, f4
 
     """def net_f(self, x, y, z, t):
-        RE = 200
+        RE = 1
         u, v, w, p = self.net_u(x, y, z, t)
         f11, f22, f33, f44 = self.you(x, y, z, t)
         u_t = tf.gradients(u, t)[0]
@@ -516,8 +516,8 @@ class PhysicsInformedNN:
 
 
 if __name__ == "__main__":
-    N_u = 5766
-    N_b = 5766
+    N_u = 1000
+    N_b = 800
     N_f = 10000
     layers = [4, 50, 50, 50, 50, 50, 4]
 
